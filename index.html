@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Support Shift Note Helper</title>
+    <style>
+        :root {
+            --bg-color: #0f172a;
+            --card-bg: #1e293b;
+            --accent-color: #38bdf8;
+            --text-color: #f8fafc;
+            --muted-text: #94a3b8;
+            --button-bg: #2563eb;
+            --button-hover: #1d4ed8;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            margin: 0;
+            padding: 12px;
+            display: flex;
+            justify-content: center;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 480px; /* Perfect for mobile screens */
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        h2 {
+            margin: 4px 0;
+            font-size: 1.2rem;
+            color: var(--accent-color);
+            text-align: center;
+        }
+
+        .card {
+            background-color: var(--card-bg);
+            border-radius: 10px;
+            padding: 12px;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.3);
+        }
+
+        label {
+            font-size: 0.85rem;
+            color: var(--muted-text);
+            display: block;
+            margin-bottom: 4px;
+        }
+
+        input, select, textarea {
+            width: 100%;
+            padding: 10px;
+            border-radius: 6px;
+            border: 1px solid #334155;
+            background-color: #0f172a;
+            color: #fff;
+            font-size: 0.95rem;
+            box-sizing: border-box;
+            margin-bottom: 10px;
+        }
+
+        textarea {
+            resize: vertical;
+            min-height: 90px;
+        }
+
+        .btn {
+            background-color: var(--button-bg);
+            color: white;
+            border: none;
+            padding: 12px;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: bold;
+            width: 100%;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+
+        .btn-clear {
+            background-color: #475569;
+            margin-top: 6px;
+        }
+
+        /* Styling for the Ad Container */
+        .ad-container {
+            background-color: #1e293b;
+            border: 1px dashed #334155;
+            border-radius: 8px;
+            padding: 8px;
+            text-align: center;
+            margin-top: 8px;
+        }
+
+        .ad-label {
+            font-size: 0.65rem;
+            color: var(--muted-text);
+            letter-spacing: 1px;
+            display: block;
+            margin-bottom: 4px;
+        }
+
+        .privacy-notice {
+            font-size: 0.7rem;
+            color: var(--muted-text);
+            text-align: center;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h2>⚡ Shift Handover Builder</h2>
+
+    <div class="card">
+        <label for="shiftType">Shift Type</label>
+        <select id="shiftType">
+            <option value="Day Shift">Day Shift</option>
+            <option value="Late Shift">Late Shift</option>
+            <option value="Night Shift">Night Shift</option>
+        </select>
+
+        <label for="staffName">Staff Member(s)</label>
+        <input type="text" id="staffName" placeholder="e.g. Alex / Sam">
+
+        <label for="handoverNotes">Key Tenant Updates & Log Notes</label>
+        <textarea id="handoverNotes" placeholder="Type factual notes, maintenance items, or appointments..."></textarea>
+
+        <button class="btn" onclick="copyNote()">📋 Copy Formatted Note</button>
+        <button class="btn btn-clear" onclick="clearFields()">🗑️ Clear Form</button>
+    </div>
+
+    <!-- A-Ads Banner Container -->
+    <div class="ad-container">
+        <span class="ad-label">SPONSORED ADVERTISEMENT</span>
+        <!-- PASTE YOUR A-ADS IFRAME CODE BELOW (320x50 or 300x250) -->
+        <div style="min-height: 50px; background: #0f172a; display: flex; align-items: center; justify-content: center; border-radius: 4px; color: #64748b; font-size: 0.8rem;">
+            [ A-Ads Banner Loads Here ]
+        </div>
+    </div>
+
+    <div class="privacy-notice">
+        🔒 Client-side tool: No notes or personal data are stored or transmitted.
+    </div>
+</div>
+
+<script>
+    function copyNote() {
+        const shift = document.getElementById('shiftType').value;
+        const staff = document.getElementById('staffName').value || 'N/A';
+        const notes = document.getElementById('handoverNotes').value || 'No specific updates recorded.';
+        const date = new Date().toLocaleDateString('en-GB');
+
+        const formattedText = `=== SHIFT HANDOVER REPORT ===\nDate: ${date}\nShift: ${shift}\nStaff: ${staff}\n\nNOTES & UPDATES:\n${notes}\n===========================`;
+
+        navigator.clipboard.writeText(formattedText).then(() => {
+            alert('Formatted handover copied to clipboard!');
+        }).catch(err => {
+            alert('Error copying text: ' + err);
+        });
+    }
+
+    function clearFields() {
+        document.getElementById('staffName').value = '';
+        document.getElementById('handoverNotes').value = '';
+    }
+</script>
+
+</body>
+</html>
