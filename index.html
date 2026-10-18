@@ -3,244 +3,147 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Support Staff Shift Note Helper</title>
-    <!-- Tailwind CSS CDN -->
+    <title>Support Shift Handover Helper</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    colors: {
-                        navy: {
-                            800: '#1e293b',
-                            900: '#0f172a',
-                            950: '#020617',
-                        }
-                    }
-                }
-            }
-        }
-    </script>
-    <style>
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-            -webkit-tap-highlight-color: transparent;
-        }
-        /* Custom styling for sleek toggle checkboxes */
-        .toggle-checkbox:checked {
-            right: 0;
-            border-color: #3b82f6;
-            background-color: #3b82f6;
-        }
-        .toggle-checkbox:checked + .toggle-label {
-            background-color: #1d4ed8;
-        }
-    </style>
 </head>
-<body class="bg-navy-950 text-slate-100 min-h-screen flex flex-col justify-between p-3 sm:p-6">
+<body class="bg-slate-900 text-slate-100 min-h-screen p-4 flex justify-center items-start">
 
-    <!-- Toast Notification -->
-    <div id="toast" class="fixed top-4 left-1/2 transform -translate-x-1/2 bg-emerald-600 text-white px-5 py-3 rounded-xl shadow-2xl transition-all duration-300 opacity-0 pointer-events-none z-50 flex items-center space-x-2 border border-emerald-400">
-        <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
-        </svg>
-        <span id="toast-message" class="font-semibold text-sm">Copied to clipboard!</span>
-    </div>
-
-    <!-- Main Container -->
-    <main class="w-full max-w-md mx-auto space-y-4">
-
+    <div class="w-full max-w-md bg-slate-800 rounded-xl shadow-2xl border border-slate-700 p-5 space-y-4">
+        
         <!-- Header -->
-        <header class="text-center pt-2 pb-1">
-            <div class="inline-flex items-center space-x-2 bg-navy-800 px-3 py-1 rounded-full border border-slate-700 mb-2">
-                <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
-                <span class="text-xs font-medium text-slate-300">Supported Accommodation Helper</span>
-            </div>
-            <h1 class="text-2xl font-bold tracking-tight text-white">Shift Handover & Report Builder</h1>
-            <p class="text-xs text-slate-400 mt-1">Generate clean, factual shift logs instantly.</p>
-        </header>
+        <div class="text-center border-b border-slate-700 pb-3">
+            <h1 class="text-xl font-bold text-sky-400">⚡ Shift Handover Builder</h1>
+            <p class="text-xs text-slate-400 mt-1">Quick, local formatting for support reports & logs</p>
+        </div>
 
-        <!-- Form Card -->
-        <div class="bg-navy-800 rounded-2xl p-4 sm:p-5 border border-slate-700/60 shadow-xl space-y-4">
-
-            <!-- Shift & Staff Inputs Row -->
-            <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                <div>
-                    <label for="shiftType" class="block text-xs font-semibold uppercase tracking-wider text-slate-400 mb-1">Shift Type</label>
-                    <select id="shiftType" class="w-full bg-navy-900 border border-slate-700 rounded-xl px-3 py-2.5 text-sm text-white focus:ring-2 focus:ring-blue-500 focus:outline-none transition">
-                        <option value="Day Shift">Day Shift</option>
-                        <option value="Late Shift">Late Shift</option>
-                        <option value="Night Shift">Night Shift</option>
-                        <option value="Incident Log">Incident Log</option>
-                    </select>
-                </div>
-
-                <div>
-                    <label for="staffName" class="block text-xs font-semibold uppercase tracking-wider text-slate-400 mb-1">Staff Member(s)</label>
-                    <input type="text" id="staffName" placeholder="e.g., Alex / Sam" class="w-full bg-navy-900 border border-slate-700 rounded-xl px-3 py-2.5 text-sm text-white placeholder-slate-500 focus:ring-2 focus:ring-blue-500 focus:outline-none transition">
-                </div>
-            </div>
-
-            <!-- Routine Checks Toggles -->
+        <!-- Form Fields -->
+        <div class="space-y-3">
             <div>
-                <label class="block text-xs font-semibold uppercase tracking-wider text-slate-400 mb-2">Routine Safety & Compliance Checks</label>
-                <div class="grid grid-cols-1 gap-2 bg-navy-900/60 p-3 rounded-xl border border-slate-700/50">
-                    <label class="flex items-center justify-between text-xs text-slate-200 cursor-pointer select-none">
-                        <span>🚪 Fire Exits & Pathways Clear</span>
-                        <input type="checkbox" id="chkFireExits" checked class="w-4 h-4 text-blue-600 rounded bg-navy-900 border-slate-700 focus:ring-blue-500">
+                <label for="shiftType" class="block text-xs font-semibold text-slate-300 uppercase tracking-wider mb-1">Shift Type</label>
+                <select id="shiftType" class="w-full bg-slate-900 border border-slate-700 rounded-lg p-2.5 text-sm text-slate-200 focus:ring-2 focus:ring-sky-500 focus:outline-none">
+                    <option value="Day Shift">Day Shift</option>
+                    <option value="Late Shift">Late Shift</option>
+                    <option value="Night Shift">Night Shift</option>
+                    <option value="Incident Log">Incident Log</option>
+                </select>
+            </div>
+
+            <div>
+                <label for="staffName" class="block text-xs font-semibold text-slate-300 uppercase tracking-wider mb-1">Staff Member(s)</label>
+                <input type="text" id="staffName" placeholder="e.g. Alex / Sam" class="w-full bg-slate-900 border border-slate-700 rounded-lg p-2.5 text-sm text-slate-200 focus:ring-2 focus:ring-sky-500 focus:outline-none">
+            </div>
+
+            <!-- Routine Checks -->
+            <div>
+                <label class="block text-xs font-semibold text-slate-300 uppercase tracking-wider mb-1">Routine Checks</label>
+                <div class="grid grid-cols-2 gap-2 text-xs">
+                    <label class="flex items-center space-x-2 bg-slate-900 p-2 rounded-lg border border-slate-700 cursor-pointer">
+                        <input type="checkbox" id="chkFire" class="rounded bg-slate-800 border-slate-600 text-sky-500 focus:ring-sky-500">
+                        <span class="text-slate-300">Fire Exits Clear</span>
                     </label>
-                    <label class="flex items-center justify-between text-xs text-slate-200 cursor-pointer select-none">
-                        <span>💊 Medication Audit & Log Completed</span>
-                        <input type="checkbox" id="chkMeds" checked class="w-4 h-4 text-blue-600 rounded bg-navy-900 border-slate-700 focus:ring-blue-500">
+                    <label class="flex items-center space-x-2 bg-slate-900 p-2 rounded-lg border border-slate-700 cursor-pointer">
+                        <input type="checkbox" id="chkMeds" class="rounded bg-slate-800 border-slate-600 text-sky-500 focus:ring-sky-500">
+                        <span class="text-slate-300">Meds Logged</span>
                     </label>
-                    <label class="flex items-center justify-between text-xs text-slate-200 cursor-pointer select-none">
-                        <span>🔑 Building Keys & Fobs Accounted For</span>
-                        <input type="checkbox" id="chkKeys" checked class="w-4 h-4 text-blue-600 rounded bg-navy-900 border-slate-700 focus:ring-blue-500">
+                    <label class="flex items-center space-x-2 bg-slate-900 p-2 rounded-lg border border-slate-700 cursor-pointer">
+                        <input type="checkbox" id="chkKeys" class="rounded bg-slate-800 border-slate-600 text-sky-500 focus:ring-sky-500">
+                        <span class="text-slate-300">Keys Accounted</span>
                     </label>
-                    <label class="flex items-center justify-between text-xs text-slate-200 cursor-pointer select-none">
-                        <span>🛡️ Security & Welfare Rounds Completed</span>
-                        <input type="checkbox" id="chkSecurity" checked class="w-4 h-4 text-blue-600 rounded bg-navy-900 border-slate-700 focus:ring-blue-500">
+                    <label class="flex items-center space-x-2 bg-slate-900 p-2 rounded-lg border border-slate-700 cursor-pointer">
+                        <input type="checkbox" id="chkRounds" class="rounded bg-slate-800 border-slate-600 text-sky-500 focus:ring-sky-500">
+                        <span class="text-slate-300">Rounds Done</span>
                     </label>
                 </div>
             </div>
 
-            <!-- Notes Textarea -->
             <div>
-                <label for="handoverNotes" class="block text-xs font-semibold uppercase tracking-wider text-slate-400 mb-1">Key Tenant Updates & Handover Notes</label>
-                <textarea id="handoverNotes" rows="4" placeholder="Record factual tenant updates, appointments, maintenance requests, or incident details..." class="w-full bg-navy-900 border border-slate-700 rounded-xl p-3 text-sm text-white placeholder-slate-500 focus:ring-2 focus:ring-blue-500 focus:outline-none transition"></textarea>
+                <label for="handoverNotes" class="block text-xs font-semibold text-slate-300 uppercase tracking-wider mb-1">Key Updates & Handover Notes</label>
+                <textarea id="handoverNotes" rows="4" placeholder="Enter notes, tenant updates, or maintenance items..." class="w-full bg-slate-900 border border-slate-700 rounded-lg p-2.5 text-sm text-slate-200 focus:ring-2 focus:ring-sky-500 focus:outline-none"></textarea>
             </div>
 
             <!-- Action Buttons -->
-            <div class="space-y-2 pt-1">
-                <button onclick="copyNote()" class="w-full bg-blue-600 hover:bg-blue-500 active:bg-blue-700 text-white font-bold py-3.5 px-4 rounded-xl shadow-lg transition duration-200 flex items-center justify-center space-x-2 border border-blue-400/30">
-                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 5H6a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2v-1M8 5a2 2 0 002 2h2a2 2 0 002-2M8 5a2 2 0 012-2h2a2 2 0 012 2m0 0h2a2 2 0 012 2v3m2 4H10m0 0l3-3m-3 3l3 3"></path>
-                    </svg>
+            <div class="pt-2 space-y-2">
+                <button onclick="copyNote()" class="w-full bg-sky-600 hover:bg-sky-500 active:bg-sky-700 text-white font-bold py-3 px-4 rounded-lg shadow-lg transition duration-200 flex items-center justify-center space-x-2">
+                    <span>📋</span>
                     <span>Copy Formatted Note</span>
                 </button>
-
-                <button onclick="clearForm()" class="w-full bg-slate-700 hover:bg-slate-600 active:bg-slate-800 text-slate-300 font-semibold py-2.5 px-4 rounded-xl transition duration-200 flex items-center justify-center space-x-1 text-xs">
-                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"></path>
-                    </svg>
-                    <span>Clear Form</span>
+                
+                <button onclick="clearFields()" class="w-full bg-slate-700 hover:bg-slate-600 active:bg-slate-800 text-slate-300 font-medium py-2 px-4 rounded-lg transition duration-200 text-sm">
+                    🗑️ Clear Form
                 </button>
             </div>
         </div>
 
-        <!-- Ad Container -->
-        <div class="bg-navy-800 rounded-2xl p-3 border border-slate-700/60 shadow-lg text-center overflow-hidden">
-            <span class="block text-[10px] font-semibold uppercase tracking-widest text-slate-500 mb-2">Sponsored Advertisement</span>
+        <!-- A-Ads Banner Container -->
+        <div class="mt-4 pt-4 border-t border-slate-700/60">
+            <div class="text-[10px] text-slate-500 font-semibold tracking-wider text-center mb-2 uppercase">Sponsored Advertisement</div>
             
             <!-- BEGIN AADS AD UNIT 2458977 -->
-            <div id="frame" style="width: 100%;margin: auto;position: relative; z-index: 99998;">
-              <iframe data-aa='2458977' src='https://acceptable.a-ads.com/2458977/?size=Adaptive' style='border:0; padding:0; width:100%; height:auto; overflow:hidden;display: block;margin: auto'></iframe>
-              <div style="width: 100%;margin:auto;position: absolute;left: 0;right: 0">
-                <a target="_blank" style="display:inline-block;font-size: 11px;color: #94a3b8;padding: 4px 10px;background: #1e293b;text-decoration: none; border-radius: 0 0 4px 4px;" id="frame-link" href="https://aads.com/campaigns/new/?source_id=2458977&source_type=ad_unit&partner=2458977">Advertise here</a>
-              </div>
+            <div id="frame" style="width: 100%; margin: auto; position: relative; z-index: 99998;">
+                <iframe data-aa='2458977' src='https://acceptable.a-ads.com/2458977/?size=Adaptive'
+                        style='border:0; padding:0; width:100%; height:auto; overflow:hidden; display: block; margin: auto'></iframe>
+                <div style="width: 100%; margin:auto; position: absolute; left: 0; right: 0;">
+                    <a target="_blank" style="display:inline-block; font-size: 11px; color: #94a3b8; padding: 4px 10px; background: #1e293b; text-decoration: none; border-radius: 0 0 4px 4px;" id="frame-link" href="https://aads.com/campaigns/new/?source_id=2458977&source_type=ad_unit&partner=2458977">Advertise here</a>
+                </div>
             </div>
             <!-- END AADS AD UNIT 2458977 -->
         </div>
 
-    </main>
-
-    <!-- Footer Privacy Banner -->
-    <footer class="w-full max-w-md mx-auto mt-4 text-center pb-2">
-        <div class="inline-flex items-center space-x-1.5 text-slate-400 text-[11px] bg-navy-900/80 px-3 py-1.5 rounded-full border border-slate-800">
-            <svg class="w-3.5 h-3.5 text-emerald-400 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 002-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"></path>
-            </svg>
-            <span><strong>100% Privacy Guaranteed:</strong> All inputs process locally in your browser. No server storage.</span>
+        <!-- Privacy & Attribution Footer -->
+        <div class="text-center pt-2 text-xs text-slate-400 space-y-1">
+            <p>🔒 100% Client-side tool: No data is saved or transmitted.</p>
+            <p class="font-medium text-slate-300">Created by Jack Vaughan</p>
         </div>
-    </footer>
 
-    <!-- JavaScript Handler -->
+    </div>
+
+    <!-- Notification Toast -->
+    <div id="toast" class="fixed bottom-5 left-1/2 -translate-x-1/2 bg-emerald-600 text-white text-sm font-semibold px-4 py-2.5 rounded-full shadow-2xl opacity-0 transition-opacity duration-300 pointer-events-none">
+        Copied to clipboard!
+    </div>
+
     <script>
-        function showToast(message) {
-            const toast = document.getElementById('toast');
-            const toastMsg = document.getElementById('toast-message');
-            toastMsg.textContent = message;
-            
-            toast.classList.remove('opacity-0', 'pointer-events-none');
-            toast.classList.add('opacity-100');
-
-            setTimeout(() => {
-                toast.classList.remove('opacity-100');
-                toast.classList.add('opacity-0', 'pointer-events-none');
-            }, 2500);
-        }
-
         function copyNote() {
             const shift = document.getElementById('shiftType').value;
             const staff = document.getElementById('staffName').value.trim() || 'N/A';
             const notes = document.getElementById('handoverNotes').value.trim() || 'No specific updates recorded.';
-            
-            const now = new Date();
-            const dateStr = now.toLocaleDateString('en-GB', { day: '2-digit', month: '2-digit', year: 'numeric' });
-            const timeStr = now.toLocaleTimeString('en-GB', { hour: '2-digit', minute: '2-digit' });
+            const date = new Date().toLocaleDateString('en-GB');
 
-            // Compliance Check Statuses
-            const chkFire = document.getElementById('chkFireExits').checked ? '[✓] Clear' : '[ ] Action Required';
-            const chkMeds = document.getElementById('chkMeds').checked ? '[✓] Logged' : '[ ] Pending';
-            const chkKeys = document.getElementById('chkKeys').checked ? '[✓] Accounted' : '[ ] Issue Flagged';
-            const chkSec = document.getElementById('chkSecurity').checked ? '[✓] Completed' : '[ ] Pending';
+            // Collect Routine Checks
+            const checks = [];
+            if (document.getElementById('chkFire').checked) checks.push('[X] Fire Exits Clear');
+            if (document.getElementById('chkMeds').checked) checks.push('[X] Medication Audit Completed');
+            if (document.getElementById('chkKeys').checked) checks.push('[X] Keys & Fobs Accounted For');
+            if (document.getElementById('chkRounds').checked) checks.push('[X] Welfare Rounds Conducted');
 
-            const formattedText = 
-`=======================================
-SHIFT HANDOVER & LOG REPORT
-=======================================
-DATE: ${dateStr} | TIME: ${timeStr}
-SHIFT: ${shift}
-STAFF: ${staff}
+            const checksFormatted = checks.length > 0 ? checks.join('\n') : '[ ] No routine checks selected';
 
---- ROUTINE CHECKS ---
-• Fire Exits/Pathways: ${chkFire}
-• Medication Audit:    ${chkMeds}
-• Keys & Access Fobs:  ${chkKeys}
-• Security & Welfare:  ${chkSec}
+            const formattedText = `=== SHIFT HANDOVER REPORT ===\nDate: ${date}\nShift: ${shift}\nStaff: ${staff}\n\nROUTINE CHECKS:\n${checksFormatted}\n\nNOTES & UPDATES:\n${notes}\n===========================`;
 
---- NOTES & UPDATES ---
-${notes}
-=======================================`;
-
-            // Clipboard copy via execCommand fallback for strict mobile browser frames
-            if (navigator.clipboard && window.isSecureContext) {
-                navigator.clipboard.writeText(formattedText)
-                    .then(() => showToast('Handover note copied to clipboard!'))
-                    .catch(() => fallbackCopy(formattedText));
-            } else {
-                fallbackCopy(formattedText);
-            }
+            navigator.clipboard.writeText(formattedText).then(() => {
+                showToast();
+            }).catch(err => {
+                alert('Error copying text: ' + err);
+            });
         }
 
-        function fallbackCopy(text) {
-            const textArea = document.createElement("textarea");
-            textArea.value = text;
-            textArea.style.position = "fixed";
-            textArea.style.left = "-999999px";
-            textArea.style.top = "-999999px";
-            document.body.appendChild(textArea);
-            textArea.focus();
-            textArea.select();
-            
-            try {
-                document.execCommand('copy');
-                showToast('Handover note copied to clipboard!');
-            } catch (err) {
-                showToast('Failed to copy. Please copy manually.');
-            }
-            
-            document.body.removeChild(textArea);
-        }
-
-        function clearForm() {
+        function clearFields() {
             document.getElementById('staffName').value = '';
             document.getElementById('handoverNotes').value = '';
-            document.getElementById('chkFireExits').checked = true;
-            document.getElementById('chkMeds').checked = true;
-            document.getElementById('chkKeys').checked = true;
-            document.getElementById('chkSecurity').checked = true;
-            showToast('Form cleared.');
+            document.getElementById('chkFire').checked = false;
+            document.getElementById('chkMeds').checked = false;
+            document.getElementById('chkKeys').checked = false;
+            document.getElementById('chkRounds').checked = false;
+        }
+
+        function showToast() {
+            const toast = document.getElementById('toast');
+            toast.classList.remove('opacity-0');
+            toast.classList.add('opacity-100');
+            setTimeout(() => {
+                toast.classList.remove('opacity-100');
+                toast.classList.add('opacity-0');
+            }, 2000);
         }
     </script>
 </body>
